@@ -12,50 +12,80 @@
       margin: 0;
       padding: 2rem;
     }
+
     .container {
       max-width: 600px;
       margin: auto;
       text-align: center;
+      margin-top: 50px;
     }
+
     .linkedin {
       font-size: 1.2rem;
       margin-top: 20px;
     }
+
     a {
       color: #0a66c2;
       text-decoration: none;
       font-weight: bold;
     }
+
     df-messenger {
-      z-index: 999;
-      position: fixed;
       --df-messenger-font-color: #000;
       --df-messenger-font-family: Google Sans;
       --df-messenger-chat-background: #f3f6fc;
       --df-messenger-message-user-background: #d3e3fd;
       --df-messenger-message-bot-background: #fff;
-      bottom: 16px;
-      right: 16px;
+      position: static;
+      display: block;
+      margin: 0 auto 40px auto;
+      max-width: 600px;
+    }
+
+    /* Remove floating bubble styles */
+    df-messenger-chat-bubble {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to Frank's Assistant</h1>
-    <p class="linkedin">
-      📄 View my professional profile on 
-      <a href="https://www.linkedin.com/in/frankmervin/" target="_blank">LinkedIn</a>
-    </p>
-  </div>
-
+  <!-- Chatbot should appear above the content -->
   <df-messenger
     location="asia-south1"
     project-id="franks-resume-assistant"
     agent-id="7755b46d-32f0-437e-9c29-6ac905ebf25f"
-    language-code="en"
-    max-query-length="-1">
-    <df-messenger-chat-bubble chat-title="Hi This is Frank's Assistant!!! - How can I Help you">
-    </df-messenger-chat-bubble>
+    language-code="en">
   </df-messenger>
+
+  <div class="container">
+    <h2>📄 View my professional profile on 
+      <a href="https://www.linkedin.com/in/frankmervin/" target="_blank">LinkedIn</a>
+    </h2>
+  </div>
+
+  <script>
+    // Open the chatbot automatically with welcome message
+    window.addEventListener('dfMessengerLoaded', function (event) {
+      const dfMessenger = document.querySelector('df-messenger');
+      const iframe = dfMessenger.shadowRoot.querySelector("iframe");
+      iframe.onload = () => {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        const inputField = iframeDoc.querySelector('input');
+        if (inputField) {
+          inputField.focus();
+        }
+
+        // Send greeting message as user message
+        const event = new Event('keydown');
+        inputField.value = "I'm Frank’s Assistant. I will help on screening behalf of Frank.";
+        inputField.dispatchEvent(event);
+        const enterEvent = new KeyboardEvent('keydown', {
+          bubbles: true, cancelable: true, keyCode: 13
+        });
+        inputField.dispatchEvent(enterEvent);
+      };
+    });
+  </script>
 </body>
 </html>
