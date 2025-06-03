@@ -1,62 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Frank's Assistant</title>
-    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css"
-    />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f4ff;
-        margin: 0;
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      h2 {
-        margin-top: 50px;
-        font-size: 20px;
-      }
-
-      a {
-        color: #0a66c2;
-        text-decoration: none;
-        font-weight: bold;
-      }
-
-      df-messenger {
-        max-width: 600px;
-        width: 100%;
-        margin-bottom: 20px;
-        --df-messenger-font-color: #000;
-        --df-messenger-font-family: Google Sans;
-        --df-messenger-chat-background: #f3f6fc;
-        --df-messenger-message-user-background: #d3e3fd;
-        --df-messenger-message-bot-background: #fff;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Dialogflow Chatbot -->
-    <df-messenger
-      location="asia-south1"
-      project-id="franks-resume-assistant"
-      agent-id="7755b46d-32f0-437e-9c29-6ac905ebf25f"
-      language-code="en"
-    >
-      <df-messenger-chat-bubble chat-title="Frank's Assistant"></df-messenger-chat-bubble>
-    </df-messenger>
-
-    <!-- LinkedIn Profile Link -->
-    <h2>
-      📄 View my professional profile on
+<head>
+  <meta charset="UTF-8">
+  <title>Frank's Assistant</title>
+  <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f8ff;
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+    }
+    .linkedin {
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+    a {
+      color: #0a66c2;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    df-messenger {
+      z-index: 999;
+      position: fixed;
+      --df-messenger-font-color: #000;
+      --df-messenger-font-family: Google Sans;
+      --df-messenger-chat-background: #f3f6fc;
+      --df-messenger-message-user-background: #d3e3fd;
+      --df-messenger-message-bot-background: #fff;
+      bottom: 16px;
+      right: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to Frank's Assistant</h1>
+    <p class="linkedin">
+      📄 View my professional profile on 
       <a href="https://www.linkedin.com/in/frankmervin/" target="_blank">LinkedIn</a>
-    </h2>
-  </body>
+    </p>
+  </div>
+
+  <df-messenger
+    location="asia-south1"
+    project-id="franks-resume-assistant"
+    agent-id="7755b46d-32f0-437e-9c29-6ac905ebf25f"
+    language-code="en"
+    max-query-length="-1">
+    <df-messenger-chat-bubble chat-title="Hi This is Frank's Assistant!!! - How can I Help you">
+    </df-messenger-chat-bubble>
+  </df-messenger>
+</body>
 </html>
