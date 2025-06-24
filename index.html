@@ -7,26 +7,29 @@
   <style>
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background-color: #f0f4fb;
+      background-color: #eef2f9;
       margin: 0;
       padding: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       text-align: center;
+      position: relative;
     }
 
     h1 {
       color: #1a237e;
-      font-size: 2rem;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
 
     p {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       max-width: 600px;
       margin: 10px auto;
+      color: #333;
     }
 
     a {
@@ -44,25 +47,67 @@
       --df-messenger-chat-background-color: #ffffff;
       --df-messenger-button-titlebar-color: #1a237e;
     }
+
+    .arrow {
+      position: fixed;
+      bottom: 100px;
+      right: 100px;
+      z-index: 998;
+      animation: bounce 2s infinite;
+      font-size: 2rem;
+      color: #1a237e;
+      transform: rotate(-45deg);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0) rotate(-45deg); }
+      50% { transform: translateY(-10px) rotate(-45deg); }
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      color: #555;
+      margin-top: 1.5rem;
+    }
   </style>
 </head>
 <body>
 
   <h1>Welcome to Frank's Assistant</h1>
-  <p>This chatbot is a sample use case I've created to assist with HR screening by answering initial interview questions.</p>
-  <p>Please give it a try — it's currently in demo mode, and I'm working on building a more advanced version soon.</p>
-  <p>📄 View my professional profile on <a href="https://www.linkedin.com/in/frankmervin" target="_blank">LinkedIn</a></p>
+  <p>This chatbot is a demo use case I've created to assist with HR screening by answering initial interview questions in a smart and interactive way.</p>
+  <p>Try it out and share your feedback — a full version is under development!</p>
+  <p>📄 View my profile on <a href="https://www.linkedin.com/in/frankmervin" target="_blank">LinkedIn</a></p>
+  <div class="tagline">👆 Tap the chat icon at the bottom right to start chatting</div>
 
-  <!-- Dialogflow Messenger Integration -->
+  <!-- Arrow pointing to chatbot -->
+  <div class="arrow">⬇</div>
+
+  <!-- Dialogflow Messenger -->
   <df-messenger
     location="asia-south1"
     project-id="franks-resume-assistant"
     agent-id="7755b46d-32f0-437e-9c29-6ac905ebf25f"
     language-code="en"
     max-query-length="-1">
-    <df-messenger-chat-bubble chat-title="Frank's Interactive Resume">
-    </df-messenger-chat-bubble>
+    <df-messenger-chat-bubble chat-title="Frank's Interactive Resume"></df-messenger-chat-bubble>
   </df-messenger>
+
+  <!-- Auto-open Chat -->
+  <script>
+    window.addEventListener('dfMessengerLoaded', function () {
+      const dfMessenger = document.querySelector('df-messenger');
+      const shadowRoot = dfMessenger.shadowRoot;
+
+      if (shadowRoot) {
+        const openChat = () => {
+          const fab = shadowRoot.querySelector('df-messenger-chat-bubble');
+          if (fab) fab.click();
+        };
+
+        setTimeout(openChat, 1000);
+      }
+    });
+  </script>
 
 </body>
 </html>
