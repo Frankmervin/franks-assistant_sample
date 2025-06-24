@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Frank's Assistant</title>
-  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger.js"></script>
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
   <style>
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
@@ -11,75 +11,58 @@
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       flex-direction: column;
-    }
-
-    .container {
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       text-align: center;
-      padding: 2rem;
     }
 
     h1 {
       color: #1a237e;
       font-size: 2rem;
-      margin-bottom: 0.5rem;
     }
 
     p {
       font-size: 1.1rem;
-      color: #333;
-      margin: 0.5rem 0;
       max-width: 600px;
-    }
-
-    .linkedin {
-      font-size: 1.1rem;
-      margin-top: 1rem;
+      margin: 10px auto;
     }
 
     a {
       color: #0a66c2;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: bold;
     }
 
     df-messenger {
-      --df-messenger-font-color: #000;
-      --df-messenger-font-family: 'Google Sans', sans-serif;
-      --df-messenger-chat-background: #f3f6fc;
-      --df-messenger-message-user-background: #d3e3fd;
-      --df-messenger-message-bot-background: #ffffff;
-      --df-messenger-input-box-color: #fff;
-      --df-messenger-send-icon: #1a237e;
       position: fixed;
       bottom: 20px;
       right: 20px;
-      z-index: 1000;
+      z-index: 999;
+      --df-messenger-font-color: #000;
+      --df-messenger-chat-background-color: #ffffff;
+      --df-messenger-button-titlebar-color: #1a237e;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to Frank's Assistant</h1>
-    <p>This chatbot is a sample use case I've created to assist with HR screening by answering initial interview questions.</p>
-    <p>Please give it a try — it's currently in demo mode, and I'm working on building a more advanced version soon.</p>
-    <p class="linkedin">
-      📄 View my professional profile on 
-      <a href="https://www.linkedin.com/in/frankmervin/" target="_blank">LinkedIn</a>
-    </p>
-  </div>
 
-  <!-- Replace these values below with actual from Dialogflow CX Integration -->
+  <h1>Welcome to Frank's Assistant</h1>
+  <p>This chatbot is a sample use case I've created to assist with HR screening by answering initial interview questions.</p>
+  <p>Please give it a try — it's currently in demo mode, and I'm working on building a more advanced version soon.</p>
+  <p>📄 View my professional profile on <a href="https://www.linkedin.com/in/frankmervin" target="_blank">LinkedIn</a></p>
+
+  <!-- Dialogflow Messenger Integration -->
   <df-messenger
-    chat-title="Frank's Assistant"
-    agent-id="YOUR_AGENT_ID"
-    project-id="YOUR_PROJECT_ID"
+    location="asia-south1"
+    project-id="franks-resume-assistant"
+    agent-id="7755b46d-32f0-437e-9c29-6ac905ebf25f"
     language-code="en"
-    location="YOUR_AGENT_LOCATION"  <!-- like: asia-south1 -->
-    chat-open="true">
+    max-query-length="-1">
+    <df-messenger-chat-bubble chat-title="Frank's Interactive Resume">
+    </df-messenger-chat-bubble>
   </df-messenger>
+
 </body>
 </html>
