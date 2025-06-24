@@ -4,44 +4,69 @@
   <meta charset="UTF-8">
   <title>Frank's Assistant</title>
   <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
-  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+  <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger.js"></script>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f8ff;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #f0f4fb;
       margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .container {
+      text-align: center;
       padding: 2rem;
     }
-    .container {
+
+    h1 {
+      color: #1a237e;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #333;
+      margin: 0.5rem 0;
       max-width: 600px;
-      margin: auto;
-      text-align: center;
     }
+
     .linkedin {
-      font-size: 1.2rem;
-      margin-top: 20px;
+      font-size: 1.1rem;
+      margin-top: 1rem;
     }
+
     a {
       color: #0a66c2;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
     }
+
     df-messenger {
-      z-index: 999;
-      position: fixed;
       --df-messenger-font-color: #000;
-      --df-messenger-font-family: Google Sans;
+      --df-messenger-font-family: 'Google Sans', sans-serif;
       --df-messenger-chat-background: #f3f6fc;
       --df-messenger-message-user-background: #d3e3fd;
-      --df-messenger-message-bot-background: #fff;
-      bottom: 16px;
-      right: 16px;
+      --df-messenger-message-bot-background: #ffffff;
+      --df-messenger-input-box-color: #fff;
+      --df-messenger-send-icon: #1a237e;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Welcome to Frank's Assistant</h1>
+    <p>This chatbot is a sample use case I've created to assist with HR screening by answering initial interview questions.</p>
+    <p>Please give it a try — it's currently in demo mode, and I'm working on building a more advanced version soon.</p>
     <p class="linkedin">
       📄 View my professional profile on 
       <a href="https://www.linkedin.com/in/frankmervin/" target="_blank">LinkedIn</a>
@@ -49,13 +74,12 @@
   </div>
 
   <df-messenger
-    location="asia-south1"
-    project-id="franks-resume-assistant"
+    chat-title="Ask me anything!"
     agent-id="7755b46d-32f0-437e-9c29-6ac905ebf25f"
     language-code="en"
-    max-query-length="-1">
-    <df-messenger-chat-bubble chat-title="Hi This is Frank's Assistant!!! - How can I Help you">
-    </df-messenger-chat-bubble>
+    project-id="franks-resume-assistant"
+    location="asia-south1"
+    chat-open="true">
   </df-messenger>
 </body>
 </html>
