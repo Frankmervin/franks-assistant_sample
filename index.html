@@ -50,18 +50,35 @@
 
     .arrow {
       position: fixed;
-      bottom: 100px;
-      right: 100px;
+      bottom: 120px;
+      right: 110px;
       z-index: 998;
       animation: bounce 2s infinite;
-      font-size: 2rem;
-      color: #1a237e;
+      font-size: 4rem;
+      color: #ff4081;
       transform: rotate(-45deg);
+      text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081;
+      cursor: pointer;
+    }
+
+    .arrow:hover::after {
+      content: "Click to Chat!";
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 4px 8px;
+      font-size: 0.9rem;
+      color: #000;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      white-space: nowrap;
     }
 
     @keyframes bounce {
       0%, 100% { transform: translateY(0) rotate(-45deg); }
-      50% { transform: translateY(-10px) rotate(-45deg); }
+      50% { transform: translateY(-15px) rotate(-45deg); }
     }
 
     .tagline {
